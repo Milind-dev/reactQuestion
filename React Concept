@@ -1,0 +1,163 @@
+
+The constructor is a method used to initialize an object's state in a class. It automatically called during the creation of an object in a class.
+The constructor in a React component is called before the component is mounted.
+The constructor for a React component is called before it is mounted. When implementing the constructor for a React.Component subclass, you should call super(props) before any other statement. Otherwise, this.props will be undefined in the constructor, which can lead to bugs.
+super() will calls the constructor of its parent class. This is required when you need to access some variables from the parent class
+
+super() is called inside a react component only if it has a constructor
+class App extends React.component {
+    render(){
+        return <div>Hello { this.props.world }</div>;
+    }
+}
+class App extends React.component {
+    render(){
+        return <div>Hello { this.props.world }</div>;
+    }
+}
+class App extends React.component {
+    constructor(){
+        console.log(this) //Error: 'this' is not allowed before super()
+
+    }
+}
+The reason why this cannot be allowed before super() is because this is uninitialized if super() is not called. However even if we are not using this we need a super() inside a constructor because ES6 class constructors MUST call super if they are subclasses. Thus, you have to call super() as long as you have a constructor. (But a subclass does not have to have a constructor).
+We call super(props) inside the constructor if we have to use this.props
+super() is called inside a react component only if it has a constructor. For example, the below code doesn't require super:
+
+class App extends React.component {
+    render(){
+        return <div>Hello { this.props.world }</div>;
+    }
+}
+However if we have a constructor then super() is mandatory:
+
+class App extends React.component {
+    constructor(){
+        console.log(this) //Error: 'this' is not allowed before super()
+
+    }
+}
+The reason why this cannot be allowed before super() is because this is uninitialized if super() is not called. However even if we are not using this we need a super() inside a constructor because ES6 class constructors MUST call super if they are subclasses. Thus, you have to call super() as long as you have a constructor. (But a subclass does not have to have a constructor).
+
+We call super(props) inside the constructor if we have to use this.props, for example:
+
+class App extends React.component{
+    constructor(props){
+        super(props);
+        console.log(this.props); // prints out whatever is inside props
+
+    }
+}
+In React, when you call super with props. React will make props available across the component through this.props
+
+The primary purpose of props in React is to provide following component functionality:
+
+Pass custom data to your React component.
+Trigger "state" changes (more on this later).
+Use via this.props.reactProp inside component's render() method.
+
+It's best to use camelCase formatting when creating your own React props
+name then becomes a property attached to React's native props object 
+
+
+
+
+Homepage
+React Elements
+Components
+Nested
+Props 
+Learning React can be fun. Just follow these navigation links to browse around.
+
+More articles are always in the works. If you are a tutorial writer and wish to help us build a great resource, please contact me by following any of the links below.
+
+GitHub GitHub
+Twitter Twitter
+Contact Contact Me
+
+Tutorial requests are welcome.
+
+Free Premium Course-Like React JS Tutorials
+Subscribe to React.js Tutorials
+
+
+As a published author of React Book and jQuery Gems this site is where I vent about React and post new tutorials.
+
+If you'd like to receive new tutorial notifications you can subscribe below. No junk.
+
+You will also receive free course material and useful look-up diagrams by email not available anywhere on the site.
+Email Address
+ 
+Props
+In React props is short for properties. They are single values or objects containing a set of values that are passed to React Components on creation using a naming convention similar to HTML-tag attributes.
+
+The primary purpose of props in React is to provide following component functionality:
+
+Pass custom data to your React component.
+Trigger "state" changes (more on this later).
+Use via this.props.reactProp inside component's render() method.
+It's best to use camelCase formatting when creating your own React props just to stick to the commonly adopted standard.
+
+I'll demonstrate this principle using a JSX example:
+
+
+    <Element reactProp = "1" />
+
+This "reactProp" (or whatever you came up with) name then becomes a property attached to React's native props object which originally already exists on all components created using React library.
+
+
+    props.reactProp;
+
+Within React Component definition, these attributes then become properties attached to the React's native props object within component's constructor. But these props also become available inside the component's render method as well.
+
+So how do we access props inside the actual React component? Let's take a look.
+
+When starting out, these are the two common places you will use to access or "intercept" values stored in props object which was passed into your React component during creation.
+
+
+    class Element extends React.Component {
+
+        // Component's constructor
+        constructor(props) {
+
+            // Required to call original constructor
+            super(props);
+
+            // Props are now accessible from here
+            var v = props.reactProp;
+        }
+
+        // This is called when ReactDOM.render is called on <Element />
+        render() {
+
+            // And from here
+            return (<div>{this.props.reactProp}</div>)
+        }
+
+    }
+    
+This actually makes a lot of sense. We need to access props during initialization stage and also every time the component is rendered.
+
+During the rest of this React props tutorial we'll learn what props are whether JSX is used or not. We'll also cover a few other practical examples just to see what props actually help us accomplish.
+
+Using "props" without JSX
+==========================
+Note that it is possible to use React props without JSX. That means we have to use native React's function createElement.
+Here we also pass null, which in this case indicates "empty" innerHTML. Or more precisely, no children.
+ React.createElement(Hello, { alertNumber : 1 }, null);
+ <Hello alertNumber = "1" />
+ 
+ 
+ A React Component assumes three things:
+
+React props are the parameters of React Components
+Props are used to pass values that dynamically change contents of a React Component
+A React Component must have a return value of type React Element
+
+
+
+
+
+
+
