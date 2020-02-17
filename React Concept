@@ -1,3 +1,5 @@
+constructor or super
+====================
 
 The constructor is a method used to initialize an object's state in a class. It automatically called during the creation of an object in a class.
 The constructor in a React component is called before the component is mounted.
@@ -141,6 +143,8 @@ This actually makes a lot of sense. We need to access props during initializatio
 
 During the rest of this React props tutorial we'll learn what props are whether JSX is used or not. We'll also cover a few other practical examples just to see what props actually help us accomplish.
 
+Props make components reusable.
+
 Using "props" without JSX
 ==========================
 Note that it is possible to use React props without JSX. That means we have to use native React's function createElement.
@@ -158,6 +162,17 @@ A React Component must have a return value of type React Element
 
 
 
+Render
+=========
+Render a React element into the DOM in the supplied container and return a reference to the component (or returns null
+for stateless components). If the React element  was previously rendered into container , this will perform an update on 
+it and only mutate the DOM as necessary to reflect the latest React element.
+
+
+In react, render is a method that tell react what to display. return in a method or function is the output of the method 
+or function.  ... Render is a method that tell react what to display.
 
 
 
+ReactDOM.render() controls the contents of the container node you pass in. Any existing DOM elements inside are replaced 
+when first called.
